@@ -1,4 +1,6 @@
 interface Entity {
+    id: number;
     name: string;
-    dateTime: string;
+    startTime: string;
+    endTime: string;
 }

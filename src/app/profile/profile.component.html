@@ -3,6 +3,12 @@
     <hr>
     <label>Name: </label>
     <input type="text" [(ngModel)]="name" class="form-control" />
+
+    <label>Start time: </label>
+    <input type="text" [(ngModel)]="startTime" class="form-control" />
+
+    <label>End time: </label>
+    <input type="text" [(ngModel)]="endTime" class="form-control" />
     <hr>
     <div class="col-sm-6 col-xs-6 col-xs-offset-4">
         <button class="btn btn-primary" (click)="saveRecord()">Save</button>

@@ -5,7 +5,8 @@ import { HttpClient } from '@angular/common/http';
 export class DataService {
 
   secret = '$2b$10$KoTfRG6TNgsR95x6dHqPz.CdBGM/l2n.tGHCIvV5jzgHoHZ5I2HtO';
-  jsBin = 'https://api.jsonbin.io/b/5e552ad461ef782ce2bf143b';
+  jsBinPut = 'https://api.jsonbin.io/b/5e552ad461ef782ce2bf143b';
+  jsBin = `${this.jsBinPut}/4`;
 
   constructor(private http: HttpClient) { }
 
@@ -13,6 +14,10 @@ export class DataService {
     console.log('called');
 
     return this.http.get(this.jsBin, { headers: { 'secret-key': this.secret } });
+  }
+
+  update(data: Entity[]) {
+    return this.http.put<Entity[]>(this.jsBinPut, data, { headers: { 'secret-key': this.secret, 'versioning': 'false' } });
   }
 
 }

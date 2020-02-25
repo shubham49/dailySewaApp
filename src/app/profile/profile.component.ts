@@ -10,18 +10,33 @@ import { DataService } from '../data.service';
 export class ProfileComponent implements OnInit {
 
   name: string;
+  startTime: string;
+  endTime: string;
+  data: Entity[];
 
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    this.dataService.getData().subscribe(data => {
+    this.dataService.getData().subscribe((data: Entity[]) => {
+      this.data = data;
       console.log('data', data);
     });
   }
 
   saveRecord() {
-    console.log('name', this.name);
-    
+    if (this.name && this.startTime && this.endTime && this.data) {
+      const entity: Entity = {
+        id: this.data.length + 1,
+        name: this.name,
+        startTime: this.startTime,
+        endTime: this.endTime
+      };
+      this.data.push(entity);
+      this.dataService.update(this.data).subscribe(data => {
+        console.log('data', data);
+      });
+    }
+
   }
 
 }
