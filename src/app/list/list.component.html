@@ -1,3 +1,17 @@
-<p>
-  list works!
-</p>
+<div class="col-sm-12 col-xs-12">
+  <h4>Attendance</h4>
+  <a href="javascript:void(0)" (click)="addEntry()">Add Entry</a>
+  <br />
+  <br />
+  <div class="col-sm-12 col-sm-xs">
+    <div class="col-sm-4 col-xs-4">Name</div>
+    <div class="col-sm-4 col-xs-4">Start Time</div>
+    <div class="col-sm-4 col-xs-4">End Time</div>
+  </div>
+  <hr>
+  <div class="col-sm-12 col-sm-xs" *ngFor="let i of data">
+    <div class="col-sm-4 col-xs-4">{{i.name}}</div>
+    <div class="col-sm-4 col-xs-4">{{i.startTime}}</div>
+    <div class="col-sm-4 col-xs-4">{{i.endTime}}</div>
+  </div>
+</div>

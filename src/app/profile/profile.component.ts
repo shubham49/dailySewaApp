@@ -14,7 +14,7 @@ export class ProfileComponent implements OnInit {
   endTime: string;
   data: Entity[];
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, private router: Router) { }
 
   ngOnInit() {
     this.dataService.getData().subscribe((data: Entity[]) => {
@@ -37,6 +37,11 @@ export class ProfileComponent implements OnInit {
       });
     }
 
+  }
+
+  listing() {
+    console.log('listing()');
+    this.router.navigate(['/list']);
   }
 
 }
