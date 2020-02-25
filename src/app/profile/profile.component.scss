@@ -1,0 +1,103 @@
+.cross-button {
+    position: fixed;
+    cursor: pointer;
+    font-size: 40px;
+    top: 3%;
+    right: 5%;
+    color: #ffc300;
+    z-index: 2000;
+}
+
+.left-profile-panel {
+    background-image: url(../../assets/profile_internal.jpeg);
+    background-position: center;
+    background-size: 150% 100%;
+    background-repeat: no-repeat;
+    height: 100vh;
+    line-height: 100vh;
+    overflow: hidden;
+    text-align: center;
+    transition: all ease-in-out 1s;
+    position: relative;
+}
+
+.profile-left-text {
+    position: relative;
+    top: 50%;
+    h1 {
+        color: white;
+        font-size: 50px;
+    }
+    h1:after {
+        background-color: #FFC300;
+        position: absolute;
+        content: "";
+        top: 100%;
+        left: 20%;
+        width: 60%;
+        height: 6px;
+    }
+    span {
+        color: #FFC300;
+    }
+}
+
+.right-profile-panel {
+    background-image: url(../../assets/profile_right_bg.jpg);
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    text-align: center;
+    transition: all ease-in-out 1s;
+    position: relative;
+    height: 100vh;
+}
+
+@media (max-width: 767px) {
+    .right-profile-panel {
+        height: auto;
+    }
+    .left-profile-panel {
+        height: 50vh;
+    }
+}
+
+.header {
+    font-size: 30px;
+    margin-top: 10%;
+}
+
+.profile-container {
+    margin-top: 20px;
+    .profile-pic {
+        border: 1px solid #ffc300;
+        padding: 4px;
+    }
+    .heading-about {
+        margin: 15px;
+        color: #FFC300;
+        font-size: 26px;
+        text-align: left;
+    }
+    p {
+        margin: 10px;
+        text-align: left;
+    }
+    a {
+        cursor: pointer;
+        color: #ffc300;
+        border: 1px solid #ffc300;
+        padding: 12px;
+    }
+    a:hover {
+        background-color: #ffc300;
+        color: white;
+        text-decoration: none;
+        border: 1px solid white;
+    }
+}
+
+.display {
+    z-index: 1500;
+}
