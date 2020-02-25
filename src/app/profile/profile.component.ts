@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-profile',
@@ -8,8 +9,18 @@ import { Router } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
 
+  name: string;
+
+  constructor(private dataService: DataService) { }
+
   ngOnInit() {
-    console.log('on init');
+    this.dataService.getData().subscribe(data => {
+      console.log('data', data);
+    });
+  }
+
+  saveRecord() {
+    console.log('name', this.name);
     
   }
 
