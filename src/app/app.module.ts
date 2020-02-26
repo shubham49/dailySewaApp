@@ -10,6 +10,7 @@ import { ImagePreloaderDirective } from './image-preloader.directive';
 import { DataService } from './data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ListComponent } from './list/list.component';
+import { ExcelService } from './excel.service';
 
 
 @NgModule({
@@ -26,7 +27,7 @@ import { ListComponent } from './list/list.component';
     GaugeModule.forRoot(),
     FormsModule
   ],
-  providers: [DataService],
+  providers: [DataService, ExcelService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
