@@ -6,16 +6,18 @@
   <br />
   <p *ngIf="!data">Loading...</p>
   <div *ngIf="data" class="col-sm-12 col-xs-12">
-    <div class="col-sm-3 col-xs-3">Name</div>
-    <div class="col-sm-3 col-xs-3">Sewa</div>
-    <div class="col-sm-3 col-xs-3">Start Time</div>
-    <div class="col-sm-3 col-xs-3">End Time</div>
+    <div class="col-sm-3 col-xs-3"><span>Name</span></div>
+    <div class="col-sm-2 col-xs-2"><span>Sewa</span></div>
+    <div class="col-sm-2 col-xs-2"><span>Date</span></div>
+    <div class="col-sm-2 col-xs-2"><span>Start Time</span></div>
+    <div class="col-sm-2 col-xs-2"><span>End Time</span></div>
   </div>
   <hr>
-  <div class="col-sm-12 col-sm-xs" *ngFor="let i of data">
-    <div class="col-sm-3 col-xs-3">{{i.name}}</div>
-    <div class="col-sm-3 col-xs-3">{{i.sewa}}</div>
-    <div class="col-sm-3 col-xs-3">{{i.startTime}}</div>
-    <div class="col-sm-3 col-xs-3">{{i.endTime}}</div>
+  <div class="col-sm-12 col-xs-12 entry" *ngFor="let i of data">
+    <div class="col-sm-3 col-xs-3"><span>{{i.name}}</span></div>
+    <div class="col-sm-2 col-xs-2"><span>{{i.sewa}}</span></div>
+    <div class="col-sm-2 col-xs-2"><span>{{i.date}}</span></div>
+    <div class="col-sm-2 col-xs-2"><span>{{i.startTime}}</span></div>
+    <div class="col-sm-2 col-xs-2"><span>{{i.endTime}}</span></div>
   </div>
 </div>

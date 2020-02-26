@@ -11,6 +11,7 @@ export class ProfileComponent implements OnInit {
 
   name: string;
   sewa: string;
+  date: string;
   startTime: string;
   endTime: string;
   data: Entity[];
@@ -25,7 +26,9 @@ export class ProfileComponent implements OnInit {
   }
 
   validateForm() {
-    return this.name && this.sewa && this.startTime && this.data && !this.isSaveInProcess;
+    return this.name && this.sewa &&
+      this.startTime && this.data &&
+      !this.isSaveInProcess && this.date;
   }
 
   saveRecord() {
@@ -33,6 +36,7 @@ export class ProfileComponent implements OnInit {
       const entity: Entity = {
         id: this.data.length + 1,
         name: this.name,
+        date: this.date,
         sewa: this.sewa,
         startTime: this.startTime,
         endTime: this.endTime
