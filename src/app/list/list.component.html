@@ -5,19 +5,26 @@
   <br />
   <br />
   <p *ngIf="!data">Loading...</p>
-  <div *ngIf="data" class="col-sm-12 col-xs-12">
-    <div class="col-sm-3 col-xs-3"><span>Name</span></div>
-    <div class="col-sm-2 col-xs-2"><span>Sewa</span></div>
-    <div class="col-sm-2 col-xs-2"><span>Date</span></div>
-    <div class="col-sm-2 col-xs-2"><span>Start Time</span></div>
-    <div class="col-sm-2 col-xs-2"><span>End Time</span></div>
-  </div>
-  <hr>
-  <div class="col-sm-12 col-xs-12 entry" *ngFor="let i of data">
-    <div class="col-sm-3 col-xs-3"><span>{{i.name}}</span></div>
-    <div class="col-sm-2 col-xs-2"><span>{{i.sewa}}</span></div>
-    <div class="col-sm-2 col-xs-2"><span>{{i.date}}</span></div>
-    <div class="col-sm-2 col-xs-2"><span>{{i.startTime}}</span></div>
-    <div class="col-sm-2 col-xs-2"><span>{{i.endTime}}</span></div>
+  <div class="table-responsive">
+    <table *ngIf="data" class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Sewa</th>
+          <th>Date</th>
+          <th>Start Time</th>
+          <th>End Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let i of data">
+          <td>{{i.name}}</td>
+          <td>{{i.sewa}}</td>
+          <td>{{i.date}}</td>
+          <td>{{i.startTime}}</td>
+          <td>{{i.endTime}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
