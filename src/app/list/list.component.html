@@ -14,6 +14,7 @@
           <th>Date</th>
           <th>Start Time</th>
           <th>End Time</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -23,6 +24,10 @@
           <td>{{i.date}}</td>
           <td>{{i.startTime}}</td>
           <td>{{i.endTime}}</td>
+          <td>
+              <a href="javascript:void(0)" (click)="edit(i)">Edit</a>
+              <!-- <a href="javascript:void(0)" (click)="delete()">Delete</a> -->
+          </td>
         </tr>
       </tbody>
     </table>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { DataService } from '../data.service';
 
 @Component({
@@ -8,42 +8,67 @@ import { DataService } from '../data.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-
-  name: string;
-  sewa: string;
-  date: string;
-  startTime: string;
-  endTime: string;
+  entity: Entity;
   data: Entity[];
   isSaveInProcess = false;
 
-  constructor(private dataService: DataService, private router: Router) { }
+  constructor(private dataService: DataService, private router: Router,
+    private route: ActivatedRoute) {
+    this.entity = {
+      id: null,
+      date: this.getCurrentDate(),
+      endTime: '',
+      name: '',
+      sewa: '',
+      startTime: ''
+    };
+  }
+
+  getCurrentDate() {
+    const today = new Date();
+    const dd = today.getDate();
+    const mm = today.getMonth() + 1;
+    let ddd = dd.toString();
+    let mmm = mm.toString();
+
+    const yyyy = today.getFullYear();
+    if (dd < 10) {
+      ddd = '0' + dd;
+    }
+    if (mm < 10) {
+      mmm = '0' + mm;
+    }
+    return ddd + '/' + mmm + '/' + yyyy;
+  }
 
   ngOnInit() {
-    this.dataService.getData().subscribe((data: Entity[]) => {
+    this.dataService.getData().then((data: Entity[]) => {
+      this.route.queryParams.subscribe(params => {
+        const id = params['id'];
+        if (id) {
+          const existingEnt = this.dataService.getById(id);
+          if (existingEnt) {
+            this.entity = existingEnt;
+          }
+        }
+      });
       this.data = data;
     });
   }
 
   validateForm() {
-    return this.name && this.sewa &&
-      this.startTime && this.data &&
-      !this.isSaveInProcess && this.date;
+    return this.entity.name && this.entity.sewa &&
+      this.entity.startTime && this.data &&
+      !this.isSaveInProcess && this.entity.date;
   }
 
   saveRecord() {
     if (this.validateForm()) {
-      const entity: Entity = {
-        id: this.data.length + 1,
-        name: this.name,
-        date: this.date,
-        sewa: this.sewa,
-        startTime: this.startTime,
-        endTime: this.endTime
-      };
-      this.data.push(entity);
+      if (!this.entity.id) {
+        this.entity.id = this.data.length + 1;
+      }
       this.isSaveInProcess = true;
-      this.dataService.update(this.data).subscribe(data => {
+      this.dataService.update(this.entity).subscribe(data => {
         this.isSaveInProcess = false;
         window.alert('saved successfully');
       }, err => {

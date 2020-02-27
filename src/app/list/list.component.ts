@@ -16,13 +16,17 @@ export class ListComponent implements OnInit {
     private excelService: ExcelService) { }
 
   ngOnInit() {
-    this.dataService.getData().subscribe((data: Entity[]) => {
+    this.dataService.getData().then((data: Entity[]) => {
       this.data = data;
     });
   }
 
   addEntry() {
     this.router.navigate(['/']);
+  }
+
+  edit(entity: Entity) {
+    this.router.navigate(['/'], {queryParams: {id: entity.id}});
   }
 
   exportExcel() {

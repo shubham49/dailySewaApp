@@ -1,0 +1,18 @@
+[
+    {
+        "id": 1,
+        "name": "string",
+        "date": "string",
+        "sewa": "string",
+        "startTime": "string",
+        "endTime": "string"
+    },
+    {
+        "id": 2,
+        "name": "string",
+        "date": "string",
+        "sewa": "string",
+        "startTime": "string",
+        "endTime": "string"
+    }
+]
