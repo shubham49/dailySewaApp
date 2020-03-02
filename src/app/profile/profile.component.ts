@@ -20,7 +20,8 @@ export class ProfileComponent implements OnInit {
       endTime: '',
       name: '',
       sewa: '',
-      startTime: ''
+      startTime: '',
+      signature: ''
     };
   }
 
