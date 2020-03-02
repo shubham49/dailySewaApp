@@ -5,4 +5,5 @@ interface Entity {
     sewa: string;
     startTime: string;
     endTime: string;
+    signature: string;
 }
