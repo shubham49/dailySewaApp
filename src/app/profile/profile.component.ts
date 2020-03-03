@@ -14,6 +14,10 @@ export class ProfileComponent implements OnInit {
 
   constructor(private dataService: DataService, private router: Router,
     private route: ActivatedRoute) {
+      this.init();
+  }
+
+  private init() {
     this.entity = {
       id: null,
       date: this.getCurrentDate(),
@@ -71,6 +75,7 @@ export class ProfileComponent implements OnInit {
       this.isSaveInProcess = true;
       this.dataService.update(this.entity).subscribe(data => {
         this.isSaveInProcess = false;
+        this.init();
         window.alert('saved successfully');
       }, err => {
         this.isSaveInProcess = false;
