@@ -2,8 +2,16 @@
     <h4>Daily Sewa App</h4>
     <a href="javascript:void(0)" (click)="listing()">See Listing</a>
     <hr>
-    <label>Name: </label>
-    <input type="text" [(ngModel)]="entity.name" class="form-control" />
+    <mat-form-field>
+        <input type="text" placeholder="Name" aria-label="Number" matInput [(ngModel)]="entity.name"
+            (ngModelChange)="onNameChange($event)" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredNameOptions" [value]="option">
+                {{ option }}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+    <br />
 
     <label>Sewa: </label>
     <input type="text" [(ngModel)]="entity.sewa" class="form-control" />

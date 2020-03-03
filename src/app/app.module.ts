@@ -5,12 +5,13 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ProfileComponent } from './profile/profile.component';
-import { DataService } from './data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ListComponent } from './list/list.component';
-import { ExcelService } from './excel.service';
 import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DataService } from './services/data.service';
+import { ExcelService } from './services/excel.service';
+import { AppUtilsService } from './services/app-utils.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     MaterialModule,
   ],
-  providers: [DataService, ExcelService],
+  providers: [DataService, ExcelService, AppUtilsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

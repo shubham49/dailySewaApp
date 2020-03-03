@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { DataService } from '../data.service';
+import { DataService } from '../services/data.service';
+import { AppUtilsService } from '../services/app-utils.service';
 
 @Component({
   selector: 'app-profile',
@@ -11,39 +12,25 @@ export class ProfileComponent implements OnInit {
   entity: Entity;
   data: Entity[];
   isSaveInProcess = false;
+  searchField: string;
+  filteredNameOptions: string[];
+  nameOptions = new Set();
 
   constructor(private dataService: DataService, private router: Router,
-    private route: ActivatedRoute) {
-      this.init();
+    private route: ActivatedRoute, private appUtils: AppUtilsService) {
+    this.init();
   }
 
   private init() {
     this.entity = {
       id: null,
-      date: this.getCurrentDate(),
+      date: this.appUtils.getCurrentDate(),
       endTime: '',
       name: '',
       sewa: '',
       startTime: '',
       signature: ''
     };
-  }
-
-  getCurrentDate() {
-    const today = new Date();
-    const dd = today.getDate();
-    const mm = today.getMonth() + 1;
-    let ddd = dd.toString();
-    let mmm = mm.toString();
-
-    const yyyy = today.getFullYear();
-    if (dd < 10) {
-      ddd = '0' + dd;
-    }
-    if (mm < 10) {
-      mmm = '0' + mm;
-    }
-    return ddd + '/' + mmm + '/' + yyyy;
   }
 
   ngOnInit() {
@@ -58,12 +45,22 @@ export class ProfileComponent implements OnInit {
         }
       });
       this.data = data;
+      this.populateNameOptions();
     });
+  }
+
+  populateNameOptions() {
+    this.data.forEach(entry => this.nameOptions.add(entry.name));
+  }
+
+  onNameChange(val: string) {
+    this.filteredNameOptions = [];
+    this.nameOptions.forEach((option: string) =>
+      option.toLowerCase().indexOf(val.toLowerCase()) === 0 && this.filteredNameOptions.push(option));
   }
 
   validateForm() {
     return this.entity.name && this.entity.sewa &&
-      this.entity.startTime && this.data &&
       !this.isSaveInProcess && this.entity.date;
   }
 

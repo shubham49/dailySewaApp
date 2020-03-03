@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
 import { Router } from '@angular/router';
-import { ExcelService } from '../excel.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { DataService } from '../services/data.service';
+import { ExcelService } from '../services/excel.service';
 
 @Component({
   selector: 'app-list',
