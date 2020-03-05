@@ -36,6 +36,15 @@ export class ListComponent implements OnInit {
     this.router.navigate(['/'], { queryParams: { id: entity.id } });
   }
 
+  delete(entity: Entity) {
+    if (window.confirm('Are you sure you want to delete?')) {
+      this.dataService.delete(entity).subscribe(data => {
+        window.alert('deleted successfully');
+        window.location.reload();
+      });
+    }
+  }
+
   exportExcel() {
     this.excelService.exportAsExcelFile(this.dataSource.filteredData, 'dailySewa');
   }

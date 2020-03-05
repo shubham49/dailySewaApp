@@ -36,6 +36,15 @@ export class DataService {
     return this.http.put<Entity[]>(this.jsBinPut, this.data, { headers: { 'secret-key': this.secret, 'versioning': 'false' } });
   }
 
+  delete(ent: Entity) {
+    this.deleteExistingData(ent);
+    return this.http.put<Entity[]>(this.jsBinPut, this.data, { headers: { 'secret-key': this.secret, 'versioning': 'false' } });
+  }
+
+  deleteExistingData(ent: Entity) {
+    this.data = this.data.filter(entity => entity.id != ent.id);
+  }
+
   updateExistingData(ent: Entity) {
     for (let i = 0; i < this.data.length; i++) {
       if (this.data[i].id == ent.id) {
