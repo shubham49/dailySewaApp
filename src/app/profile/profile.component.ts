@@ -21,6 +21,8 @@ export class ProfileComponent implements OnInit {
   searchField: string;
   filteredNameOptions: string[];
   nameOptions = new Set();
+  filteredSewaOptions: string[];
+  sewaOptions = new Set();
   date: Date;
 
   constructor(private dataService: DataService, private router: Router,
@@ -54,17 +56,28 @@ export class ProfileComponent implements OnInit {
       });
       this.data = data;
       this.populateNameOptions();
+      this.populateSewaOptions();
     });
   }
 
   populateNameOptions() {
-    this.data.forEach(entry => this.nameOptions.add(entry.name));
+    this.data.forEach(entry => entry.name && this.nameOptions.add(entry.name));
+  }
+
+  populateSewaOptions() {
+    this.data.forEach(entry => entry.sewa && this.sewaOptions.add(entry.sewa));
   }
 
   onNameChange(val: string) {
     this.filteredNameOptions = [];
     this.nameOptions.forEach((option: string) =>
       option.toLowerCase().indexOf(val.toLowerCase()) === 0 && this.filteredNameOptions.push(option));
+  }
+
+  onSewaChange(val: string) {
+    this.filteredSewaOptions = [];
+    this.sewaOptions.forEach((option: string) =>
+      option.toLowerCase().indexOf(val.toLowerCase()) === 0 && this.filteredSewaOptions.push(option));
   }
 
   validateForm() {

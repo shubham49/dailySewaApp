@@ -4,8 +4,8 @@
     <hr>
     <mat-form-field>
         <input type="text" placeholder="Name" aria-label="Number" matInput [(ngModel)]="entity.name"
-            (ngModelChange)="onNameChange($event)" [matAutocomplete]="auto">
-        <mat-autocomplete #auto="matAutocomplete">
+            (ngModelChange)="onNameChange($event)" [matAutocomplete]="autoName">
+        <mat-autocomplete #autoName="matAutocomplete">
             <mat-option *ngFor="let option of filteredNameOptions" [value]="option">
                 {{ option }}
             </mat-option>
@@ -13,8 +13,16 @@
     </mat-form-field>
     <br />
 
-    <label>Sewa: </label>
-    <input type="text" [(ngModel)]="entity.sewa" class="form-control" />
+    <mat-form-field>
+        <input type="text" placeholder="Sewa" aria-label="Text" matInput [(ngModel)]="entity.sewa"
+            (ngModelChange)="onSewaChange($event)" [matAutocomplete]="autoSewa">
+        <mat-autocomplete #autoSewa="matAutocomplete">
+            <mat-option *ngFor="let option of filteredSewaOptions" [value]="option">
+                {{ option }}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+    <br />
 
     <mat-form-field>
         <input matInput [matDatepicker]="datepickerRef" [(ngModel)]="date" required readonly>
