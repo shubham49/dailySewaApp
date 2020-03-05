@@ -5,14 +5,13 @@ export class AppUtilsService {
 
   constructor() { }
 
-  getCurrentDate() {
-    const today = new Date();
-    const dd = today.getDate();
-    const mm = today.getMonth() + 1;
+  getFormattedDate(date: Date) {
+    const dd = date.getDate();
+    const mm = date.getMonth() + 1;
     let ddd = dd.toString();
     let mmm = mm.toString();
 
-    const yyyy = today.getFullYear();
+    const yyyy = date.getFullYear();
     if (dd < 10) {
       ddd = '0' + dd;
     }

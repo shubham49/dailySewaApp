@@ -2,11 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DataService } from '../services/data.service';
 import { AppUtilsService } from '../services/app-utils.service';
+import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
+import { APP_DATE_FORMATS, AppDateAdapter } from './profile.adapter';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  styleUrls: ['./profile.component.scss'],
+  providers: [
+    { provide: DateAdapter, useClass: AppDateAdapter },
+    { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
+  ]
 })
 export class ProfileComponent implements OnInit {
   entity: Entity;
@@ -15,6 +21,7 @@ export class ProfileComponent implements OnInit {
   searchField: string;
   filteredNameOptions: string[];
   nameOptions = new Set();
+  date: Date;
 
   constructor(private dataService: DataService, private router: Router,
     private route: ActivatedRoute, private appUtils: AppUtilsService) {
@@ -24,13 +31,14 @@ export class ProfileComponent implements OnInit {
   private init() {
     this.entity = {
       id: null,
-      date: this.appUtils.getCurrentDate(),
+      date: '',
       endTime: '',
       name: '',
       sewa: '',
       startTime: '',
       signature: ''
     };
+    this.date = new Date();
   }
 
   ngOnInit() {
@@ -61,7 +69,7 @@ export class ProfileComponent implements OnInit {
 
   validateForm() {
     return this.entity.name && this.entity.sewa &&
-      !this.isSaveInProcess && this.entity.date;
+      !this.isSaveInProcess && this.date;
   }
 
   saveRecord() {
@@ -69,6 +77,7 @@ export class ProfileComponent implements OnInit {
       if (!this.entity.id) {
         this.entity.id = this.data.length + 1;
       }
+      this.entity.date = this.appUtils.getFormattedDate(this.date);
       this.isSaveInProcess = true;
       this.dataService.update(this.entity).subscribe(data => {
         this.isSaveInProcess = false;
@@ -79,7 +88,6 @@ export class ProfileComponent implements OnInit {
         window.alert('some error occurred. Contact Admin');
       });
     }
-
   }
 
   listing() {
