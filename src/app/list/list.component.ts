@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { DataService } from '../services/data.service';
 import { ExcelService } from '../services/excel.service';
+import { MatPaginator } from '@angular/material';
 
 @Component({
   selector: 'app-list',
@@ -11,6 +12,7 @@ import { ExcelService } from '../services/excel.service';
 })
 export class ListComponent implements OnInit {
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   displayedColumns: string[] = ['name', 'date', 'sewa', 'startTime', 'endTime', 'actions'];
   dataSource;
 
@@ -18,9 +20,10 @@ export class ListComponent implements OnInit {
     private excelService: ExcelService) { }
 
   ngOnInit() {
-    this.dataService.getData().then((data: Entity[]) =>
+    this.dataService.getData().then((data: Entity[]) => {
       this.dataSource = new MatTableDataSource(data)
-    );
+      this.dataSource.paginator = this.paginator;
+    });
   }
 
   applyFilter(event: Event) {

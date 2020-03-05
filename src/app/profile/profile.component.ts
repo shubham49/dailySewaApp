@@ -88,7 +88,7 @@ export class ProfileComponent implements OnInit {
   saveRecord() {
     if (this.validateForm()) {
       if (!this.entity.id) {
-        this.entity.id = this.data.length + 1;
+        this.entity.id = this.data[this.data.length - 1].id + 1;
       }
       this.entity.date = this.appUtils.getFormattedDate(this.date);
       this.isSaveInProcess = true;

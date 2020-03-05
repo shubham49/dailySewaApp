@@ -17,7 +17,7 @@ export class DataService {
     } else {
       // this.jsBinPut = 'http://localhost:4200/assets/data.json';
       this.jsBinPut = 'https://api.jsonbin.io/b/5e55d63061ef782ce2bf6b32';
-      this.jsBin = `${this.jsBinPut}`;
+      this.jsBin = `${this.jsBinPut}/1`;
     }
   }
 
